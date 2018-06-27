@@ -11,7 +11,7 @@ import AVFoundation
 
 class ViewController: UIViewController {
     
-    let countingLabel : UILabel = {
+    let myLabel : UILabel = {
         let label = UILabel()
         label.text = ""
         label.numberOfLines = 0
@@ -29,8 +29,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        view.addSubview(countingLabel)
-        countingLabel.frame = view.frame
+        view.addSubview(myLabel)
+        myLabel.frame = view.frame
         beginTyping()
         
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(tapGestureHandler))
@@ -57,13 +57,13 @@ class ViewController: UIViewController {
         if messageSemiText.count < messageText.count {
             characterIndex += 1
             messageSemiText.append( messageText[messageSemiText.endIndex] )
-            countingLabel.text = "\(messageSemiText)"
+            myLabel.text = "\(messageSemiText)"
         }else {
             if player?.isPlaying == true {
                 player?.stop()
             }
             messageSemiText = messageText
-            countingLabel.text = "\(messageSemiText)"
+            myLabel.text = "\(messageSemiText)"
             displayLink.invalidate() // Must invalidate displayLink else runLoop wouldn't stop.
         }
     }
